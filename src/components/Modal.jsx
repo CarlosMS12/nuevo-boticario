@@ -1,0 +1,84 @@
+import {motion, AnimatePresence} from 'framer-motion';
+
+export default function Modal({isOpen, onClose, message, potionColor}) {
+	if (!isOpen || !message) return null;
+
+	return (
+		<AnimatePresence>
+			<motion.div
+				initial={{opacity: 0}}
+				animate={{opacity: 1}}
+				exit={{opacity: 0}}
+				onClick={onClose}
+				className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+			>
+				<motion.div
+					initial={{scale: 0.5, rotateY: -90, opacity: 0}}
+					animate={{scale: 1, rotateY: 0, opacity: 1}}
+					exit={{scale: 0.5, rotateY: 90, opacity: 0}}
+					transition={{type: 'spring', damping: 20, stiffness: 300}}
+					onClick={(e) => e.stopPropagation()}
+					className="relative max-w-lg w-full"
+				>
+					{/* Carta mágica */}
+					<div
+						className="relative bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg shadow-2xl p-8 border-4 border-amber-800"
+						style={{
+							boxShadow: `0 0 40px ${potionColor}40, 0 20px 60px rgba(0,0,0,0.5)`,
+						}}
+					>
+						{/* Botón cerrar */}
+						<button
+							onClick={onClose}
+							className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-amber-800 text-amber-50 hover:bg-amber-900 transition-colors"
+						>
+							✕
+						</button>
+
+						{/* Decoraciones de esquina */}
+						<div className="absolute top-2 left-2 text-amber-800 opacity-30 text-2xl">
+							✦
+						</div>
+						<div className="absolute top-2 right-12 text-amber-800 opacity-30 text-2xl">
+							✦
+						</div>
+						<div className="absolute bottom-2 left-2 text-amber-800 opacity-30 text-2xl">
+							✦
+						</div>
+						<div className="absolute bottom-2 right-2 text-amber-800 opacity-30 text-2xl">
+							✦
+						</div>
+
+						{/* Contenido */}
+						<div className="mt-4">
+							<p className="text-amber-900 text-lg leading-relaxed font-serif italic text-center">
+								"{message.message}"
+							</p>
+							{message.author && (
+								<p className="text-amber-700 text-sm mt-4 text-right font-magic">
+									— {message.author}
+								</p>
+							)}
+						</div>
+
+						{/* Brillo mágico */}
+						<motion.div
+							animate={{
+								opacity: [0.3, 0.6, 0.3],
+							}}
+							transition={{
+								duration: 2,
+								repeat: Infinity,
+								ease: 'easeInOut',
+							}}
+							className="absolute inset-0 rounded-lg pointer-events-none"
+							style={{
+								background: `radial-gradient(circle at 50% 50%, ${potionColor}15, transparent 70%)`,
+							}}
+						/>
+					</div>
+				</motion.div>
+			</motion.div>
+		</AnimatePresence>
+	);
+}
