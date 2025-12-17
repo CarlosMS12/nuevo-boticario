@@ -13,12 +13,35 @@ export default function Modal({isOpen, onClose, message, potionColor}) {
 				className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
 			>
 				<motion.div
-					initial={{scale: 0.5, rotateY: -90, opacity: 0}}
-					animate={{scale: 1, rotateY: 0, opacity: 1}}
-					exit={{scale: 0.5, rotateY: 90, opacity: 0}}
-					transition={{type: 'spring', damping: 20, stiffness: 300}}
+					initial={{
+						y: '100vh',
+						scale: 0.8,
+						opacity: 0,
+						rotateX: 15,
+					}}
+					animate={{
+						y: 0,
+						scale: 1,
+						opacity: 1,
+						rotateX: 0,
+					}}
+					exit={{
+						y: '100vh',
+						scale: 0.8,
+						opacity: 0,
+						rotateX: 15,
+					}}
+					transition={{
+						type: 'spring',
+						damping: 25,
+						stiffness: 200,
+						duration: 0.6,
+					}}
 					onClick={(e) => e.stopPropagation()}
 					className="relative max-w-lg w-full"
+					style={{
+						perspective: '1000px',
+					}}
 				>
 					{/* Carta mágica */}
 					<div
