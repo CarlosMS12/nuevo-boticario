@@ -129,15 +129,45 @@ function App() {
 					initial={{opacity: 0, y: 100}}
 					animate={{opacity: 1, y: 0}}
 					transition={{delay: 0.5, duration: 0.8}}
-					className="pb-4 flex justify-center"
+					className="pb-4 flex justify-center relative"
 				>
-					<img
+					{/* Brillo mágico cuando se selecciona una poción */}
+					{modalOpen && selectedPotion && (
+						<motion.div
+							initial={{opacity: 0, scale: 0.8}}
+							animate={{opacity: 1, scale: 1}}
+							exit={{opacity: 0, scale: 0.8}}
+							className="absolute inset-0 flex items-center justify-center pointer-events-none"
+						>
+							<motion.div
+								animate={{
+									opacity: [0.4, 0.8, 0.4],
+									scale: [1, 1.1, 1],
+								}}
+								transition={{
+									duration: 2,
+									repeat: Infinity,
+									ease: 'easeInOut',
+								}}
+								className="w-48 md:w-64 h-full rounded-lg blur-2xl"
+								style={{
+									background: `radial-gradient(circle, ${selectedPotion.color_hex}80, ${selectedPotion.color_hex}40, transparent)`,
+								}}
+							/>
+						</motion.div>
+					)}
+
+					<motion.img
 						src={cartasImg}
 						alt="Cartas mágicas"
-						className="w-48 md:w-64 object-contain drop-shadow-2xl"
-						style={{
-							filter: 'drop-shadow(0 10px 30px rgba(0,0,0,0.7))',
+						animate={{
+							filter:
+								modalOpen && selectedPotion
+									? `drop-shadow(0 0 30px ${selectedPotion.color_hex}) drop-shadow(0 10px 50px ${selectedPotion.color_hex}80)`
+									: 'drop-shadow(0 10px 30px rgba(0,0,0,0.7))',
 						}}
+						transition={{duration: 0.5}}
+						className="w-48 md:w-64 object-contain relative z-10"
 					/>
 				</motion.div>
 			</div>
