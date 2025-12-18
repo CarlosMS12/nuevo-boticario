@@ -7,6 +7,7 @@ export default function PotionBottle({
 	index,
 	onHoverStart,
 	onHoverEnd,
+	isLast,
 }) {
 	const [isHovered, setIsHovered] = useState(false);
 
@@ -25,7 +26,9 @@ export default function PotionBottle({
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
 			onClick={() => onClick(potion)}
-			className="relative cursor-pointer p-8 pb-24"
+			className={`relative cursor-pointer p-2 sm:p-6 md:p-8 pb-16 sm:pb-20 md:pb-24 w-full sm:w-auto flex justify-center ${
+				isLast ? 'col-span-2 sm:col-span-1' : ''
+			}`}
 		>
 			<motion.div
 				initial={{opacity: 0, y: 50}}
@@ -73,17 +76,15 @@ export default function PotionBottle({
 							transform: 'scale(1.5)',
 						}}
 					/>
-
 					{/* Imagen de la poción */}
 					<img
 						src={potion.image_url}
 						alt={potion.name}
-						className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 object-contain transition-all duration-300 pointer-events-none"
+						className="relative w-36 h-36 sm:w-32 sm:h-32 md:w-40 md:h-40 object-contain transition-all duration-300 pointer-events-none"
 						style={{
 							filter: isHovered ? `drop-shadow(0 0 20px ${potion.color_hex})` : 'none',
 						}}
-					/>
-
+					/>{' '}
 					{/* Partículas mágicas */}
 					{isHovered && (
 						<>

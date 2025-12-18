@@ -105,19 +105,18 @@ function App() {
 					initial={{opacity: 0, y: -50}}
 					animate={{opacity: 1, y: 0}}
 					transition={{duration: 1}}
-					className="pt-8 pb-4 text-center"
+					className="pt-4 md:pt-8 pb-2 md:pb-4 text-center px-4"
 				>
-					<h1 className="text-4xl md:text-6xl font-magic text-amber-100 drop-shadow-lg">
+					<h1 className="text-3xl sm:text-4xl md:text-6xl font-magic text-amber-100 drop-shadow-lg">
 						El Boticario Mágico
 					</h1>
-					<p className="text-amber-300 text-lg md:text-xl mt-2 italic">
+					<p className="text-base sm:text-lg md:text-xl mt-1 md:mt-2 italic text-amber-300">
 						Elige tu poción del día
 					</p>
-				</motion.div>
-
+				</motion.div>{' '}
 				{/* Pociones flotantes en el centro */}
-				<div className="flex-1 flex items-center justify-center px-4 py-12">
-					<div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 max-w-6xl">
+				<div className="flex-1 flex items-center justify-center px-2 sm:px-4 py-4 sm:py-8 md:py-12">
+					<div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-12 max-w-6xl w-full sm:w-auto">
 						{potions.map((potion, index) => (
 							<PotionBottle
 								key={potion.id}
@@ -126,11 +125,11 @@ function App() {
 								onClick={handlePotionClick}
 								onHoverStart={() => playSound('hover')}
 								onHoverEnd={() => stopSound('hover')}
+								isLast={index === potions.length - 1 && potions.length % 2 !== 0}
 							/>
 						))}
 					</div>
 				</div>
-
 				{/* Cartas en la parte inferior */}
 				<motion.div
 					initial={{opacity: 0, y: 100}}
