@@ -3,6 +3,7 @@ import {motion} from 'framer-motion';
 import {supabase} from './lib/supabase';
 import PotionBottle from './components/PotionBottle';
 import Modal from './components/Modal';
+import {useSounds} from './hooks/useSounds';
 import fondoImg from './assets/fondo.png';
 import cartasImg from './assets/cartas.png';
 
@@ -13,6 +14,7 @@ function App() {
 	const [currentMessage, setCurrentMessage] = useState(null);
 	const [modalOpen, setModalOpen] = useState(false);
 	const [loadingMessage, setLoadingMessage] = useState(false);
+	const {playSound, stopSound} = useSounds();
 
 	// Cargar pociones al inicio
 	useEffect(() => {
@@ -33,6 +35,7 @@ function App() {
 	};
 
 	const handlePotionClick = async (potion) => {
+		playSound('hechizo');
 		setSelectedPotion(potion);
 		setLoadingMessage(true);
 
@@ -51,6 +54,7 @@ function App() {
 				const randomMessage = data[Math.floor(Math.random() * data.length)];
 				setCurrentMessage(randomMessage);
 				setModalOpen(true);
+				playSound('abrirCarta');
 			}
 		} catch (error) {
 			console.error('Error al cargar mensaje:', error);
@@ -60,6 +64,7 @@ function App() {
 	};
 
 	const closeModal = () => {
+		playSound('cerrar');
 		setModalOpen(false);
 		setTimeout(() => {
 			setCurrentMessage(null);
@@ -119,6 +124,8 @@ function App() {
 								potion={potion}
 								index={index}
 								onClick={handlePotionClick}
+								onHoverStart={() => playSound('hover')}
+								onHoverEnd={() => stopSound('hover')}
 							/>
 						))}
 					</div>

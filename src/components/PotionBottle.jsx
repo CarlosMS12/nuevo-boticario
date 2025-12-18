@@ -1,17 +1,23 @@
 import {motion} from 'framer-motion';
 import {useState} from 'react';
 
-export default function PotionBottle({potion, onClick, index}) {
+export default function PotionBottle({
+	potion,
+	onClick,
+	index,
+	onHoverStart,
+	onHoverEnd,
+}) {
 	const [isHovered, setIsHovered] = useState(false);
 
 	const handleMouseEnter = () => {
-		console.log('Mouse ENTER:', potion.name);
 		setIsHovered(true);
+		if (onHoverStart) onHoverStart();
 	};
 
 	const handleMouseLeave = () => {
-		console.log('Mouse LEAVE:', potion.name);
 		setIsHovered(false);
+		if (onHoverEnd) onHoverEnd();
 	};
 
 	return (
