@@ -43,6 +43,17 @@ export default function Modal({isOpen, onClose, message, potionColor}) {
 						perspective: '1000px',
 					}}
 				>
+					{/* Botón cerrar - Fuera de la carta */}
+					<button
+						onClick={onClose}
+						className="absolute -top-6 -right-6 w-10 h-10 flex items-center justify-center rounded-full bg-amber-800 text-amber-50 hover:bg-amber-900 transition-all hover:scale-110 shadow-xl border-2 border-amber-600 z-10"
+						style={{
+							boxShadow: `0 0 15px ${potionColor}60`,
+						}}
+					>
+						✕
+					</button>
+
 					{/* Carta mágica */}
 					<div
 						className="relative bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg shadow-2xl p-8 border-4 border-amber-800"
@@ -50,19 +61,11 @@ export default function Modal({isOpen, onClose, message, potionColor}) {
 							boxShadow: `0 0 40px ${potionColor}40, 0 20px 60px rgba(0,0,0,0.5)`,
 						}}
 					>
-						{/* Botón cerrar */}
-						<button
-							onClick={onClose}
-							className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-amber-800 text-amber-50 hover:bg-amber-900 transition-colors"
-						>
-							✕
-						</button>
-
 						{/* Decoraciones de esquina */}
 						<div className="absolute top-2 left-2 text-amber-800 opacity-30 text-2xl">
 							✦
 						</div>
-						<div className="absolute top-2 right-12 text-amber-800 opacity-30 text-2xl">
+						<div className="absolute top-2 right-2 text-amber-800 opacity-30 text-2xl">
 							✦
 						</div>
 						<div className="absolute bottom-2 left-2 text-amber-800 opacity-30 text-2xl">
