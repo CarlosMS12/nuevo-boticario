@@ -10,7 +10,7 @@ export default function Modal({isOpen, onClose, message, potionColor}) {
 				animate={{opacity: 1}}
 				exit={{opacity: 0}}
 				onClick={onClose}
-				className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4"
+				className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6"
 			>
 				<motion.div
 					initial={{
@@ -46,7 +46,7 @@ export default function Modal({isOpen, onClose, message, potionColor}) {
 					{/* Botón cerrar - Fuera de la carta */}
 					<button
 						onClick={onClose}
-						className="absolute -top-3 -right-3 sm:-top-6 sm:-right-6 w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-amber-800 text-amber-50 hover:bg-amber-900 transition-all hover:scale-110 shadow-xl border-2 border-amber-600 z-10 text-lg sm:text-xl"
+						className="hidden sm:flex absolute -top-6 -right-6 w-10 h-10 items-center justify-center rounded-full bg-amber-800 text-amber-50 hover:bg-amber-900 transition-all hover:scale-110 shadow-xl border-2 border-amber-600 z-10 text-xl"
 						style={{
 							boxShadow: `0 0 15px ${potionColor}60`,
 						}}
@@ -55,27 +55,27 @@ export default function Modal({isOpen, onClose, message, potionColor}) {
 					</button>{' '}
 					{/* Carta mágica */}
 					<div
-						className="relative bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg shadow-2xl p-8 border-4 border-amber-800"
+						className="relative bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg shadow-2xl p-4 sm:p-6 md:p-8 border-2 sm:border-4 border-amber-800"
 						style={{
 							boxShadow: `0 0 40px ${potionColor}40, 0 20px 60px rgba(0,0,0,0.5)`,
 						}}
 					>
 						{/* Decoraciones de esquina */}
-						<div className="absolute top-2 left-2 text-amber-800 opacity-30 text-xl sm:text-2xl">
+						<div className="absolute top-1 left-1 sm:top-2 sm:left-2 text-amber-800 opacity-30 text-lg sm:text-2xl">
 							✦
 						</div>
-						<div className="absolute top-2 right-2 text-amber-800 opacity-30 text-xl sm:text-2xl">
+						<div className="absolute top-1 right-1 sm:top-2 sm:right-2 text-amber-800 opacity-30 text-lg sm:text-2xl">
 							✦
 						</div>
-						<div className="absolute bottom-2 left-2 text-amber-800 opacity-30 text-xl sm:text-2xl">
+						<div className="absolute bottom-1 left-1 sm:bottom-2 sm:left-2 text-amber-800 opacity-30 text-lg sm:text-2xl">
 							✦
 						</div>
-						<div className="absolute bottom-2 right-2 text-amber-800 opacity-30 text-xl sm:text-2xl">
+						<div className="absolute bottom-1 right-1 sm:bottom-2 sm:right-2 text-amber-800 opacity-30 text-lg sm:text-2xl">
 							✦
 						</div>
 						{/* Contenido */}
 						<div className="mt-2 sm:mt-4">
-							<p className="text-amber-900 text-base sm:text-lg leading-relaxed font-serif italic text-center">
+							<p className="text-amber-900 text-sm sm:text-base md:text-lg leading-relaxed font-serif italic text-center">
 								"{message.message}"
 							</p>
 							{message.author && (
