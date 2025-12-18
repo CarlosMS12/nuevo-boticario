@@ -87,7 +87,7 @@ function App() {
 	}
 
 	return (
-		<div className="relative min-h-screen w-full overflow-hidden">
+		<div className="relative h-screen w-full overflow-hidden fixed inset-0">
 			{/* Fondo mágico */}
 			<div
 				className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -99,7 +99,7 @@ function App() {
 			</div>
 
 			{/* Contenido principal */}
-			<div className="relative z-10 min-h-screen flex flex-col">
+			<div className="relative z-10 h-full flex flex-col">
 				{/* Título superior */}
 				<motion.div
 					initial={{opacity: 0, y: -50}}
